@@ -1,4 +1,5 @@
 {
+  "parser": "babel-eslint",
   "extends": [
     "airbnb",
     "prettier",
@@ -17,9 +18,11 @@
       }
     ],
     "react/prop-types": 0,
+    "react/prefer-stateless-function": 0,
     "no-underscore-dangle": 0,
     "import/imports-first": ["error", "absolute-first"],
-    "import/newline-after-import": "error"
+    "import/newline-after-import": "error",
+    "import/prefer-default-export": 0
   },
   "globals": {
     "window": true,

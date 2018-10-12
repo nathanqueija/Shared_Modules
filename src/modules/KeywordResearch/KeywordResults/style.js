@@ -9,19 +9,11 @@ export default component => styled(component)`
   grid-row-gap: 5px;
   overflow: scroll;
 
-  > h4 {
+  h4 {
     margin: 0;
   }
 
   ${ResultsTable}, ${RelatedResults} {
     grid-column: span 2;
-  }
-
-  ${ResultsTable} {
-    align-self: stretch;
-  }
-
-  progress {
-    max-width: 40px;
   }
 `

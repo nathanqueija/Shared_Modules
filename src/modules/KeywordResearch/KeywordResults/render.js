@@ -2,12 +2,12 @@ import React from 'react'
 import ResultsTable from 'modules/KeywordResearch/ResultsTable'
 import RelatedResults from 'modules/KeywordResearch/RelatedResults'
 
-export default ({ className, data }) => (
+export default ({ className, results }) => (
   <div className={className}>
-    <h4>{data.length} Results</h4>
+    <h4>{results.length} Results</h4>
     <button type="button">Add to seed search</button>
     <ResultsTable headings={['Keyword', 'Relevance', 'SV', 'Actions']}>
-      {data.map(({ id, name, relevance, sv }) => (
+      {results.map(({ id, name, relevance, sv }) => (
         <tr key={id}>
           <td>
             <label htmlFor={name}>

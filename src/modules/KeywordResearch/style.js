@@ -7,12 +7,6 @@ export default component => styled(component)`
   grid-gap: 10px;
   height: 100%;
 
-  h2 {
-    font-size: 16px;
-    margin: 0;
-    font-weight: 300;
-  }
-
   > * {
     box-sizing: border-box;
     border: 1px solid rgba(179, 179, 179, 0.5);
@@ -22,14 +16,5 @@ export default component => styled(component)`
     min-height: 100%;
     max-height: 100%;
     overflow: scroll;
-  }
-
-  > :first-child {
-    display: grid;
-    grid-row-gap: 5px;
-    grid-template-rows: auto auto 1fr;
-  }
-
-  > :nth-child(2) {
   }
 `
