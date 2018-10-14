@@ -2,4 +2,5 @@ import React from 'react'
 
 const KeywordResearchContext = React.createContext()
 
-export default KeywordResearchContext
+export const KeywordResearchProvider = KeywordResearchContext.Provider
+export const KeywordResearchConsumer = KeywordResearchContext.Consumer
