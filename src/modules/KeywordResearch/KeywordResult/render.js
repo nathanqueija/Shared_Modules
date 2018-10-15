@@ -7,7 +7,7 @@ export default ({
   relevance,
   sv,
   updateKeywordsSelected,
-  selected
+  updateKeywordsOmmited
 }) => (
   <tr className={className}>
     <td>
@@ -20,18 +20,10 @@ export default ({
       <progress value={sv} max="5" />
     </td>
     <td>
-      <button
-        type="button"
-        onClick={() => updateKeywordsSelected(id, true)}
-        disabled={!selected}
-      >
+      <button type="button" onClick={() => updateKeywordsOmmited(id)}>
         -
       </button>
-      <button
-        type="button"
-        onClick={() => updateKeywordsSelected(id)}
-        disabled={selected}
-      >
+      <button type="button" onClick={() => updateKeywordsSelected(id)}>
         +
       </button>
     </td>

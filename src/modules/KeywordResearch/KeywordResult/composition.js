@@ -1,13 +1,13 @@
-import { compose, withProps } from 'recompose'
-import findIndex from 'lodash/findIndex'
+import { compose, fromRenderProps } from 'recompose'
+import { KeywordResearchConsumer } from 'modules/KeywordResearch/context'
 import withStatics from 'helpers/statics/set'
 import withStyle from './style'
 import * as statics from './statics'
 
 export default compose(
-  withStyle,
-  withProps(({ keywordsSelected, id }) => ({
-    selected: findIndex(keywordsSelected, ['id', id]) !== -1
+  fromRenderProps(KeywordResearchConsumer, ({ updateKeywordsOmmited }) => ({
+    updateKeywordsOmmited
   })),
+  withStyle,
   withStatics(statics)
 )

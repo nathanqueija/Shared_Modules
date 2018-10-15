@@ -4,7 +4,7 @@ import KeywordResearch from 'modules/KeywordResearch'
 
 const keyresults = Array.from({ length: 40 }, (value, index) => ({
   id: index,
-  name: faker.company.companyName(),
+  name: faker.name.title(),
   relevance: faker.random.number({
     min: 1,
     max: 5

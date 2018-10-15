@@ -1,16 +1,20 @@
 import React from 'react'
 import ResultsTable from 'modules/KeywordResearch/ResultsTable'
 
-export default ({ className, keywordsSelected }) => (
+export default ({ className, keywordsSelected, updateKeywordsSelected }) => (
   <div className={className}>
     <ResultsTable headings={['Keyword', 'Relevance', 'SV', 'Action']}>
       {keywordsSelected.map(({ id, relevance, name, sv }) => (
         <tr key={id}>
           <td>
-            <label htmlFor={`result${id}`}>
-              <input type="checkbox" id={`result${id}`} value="Super Keyword" />
-              {name}
-            </label>
+            <button
+              type="button"
+              id={`result${id}`}
+              onClick={() => updateKeywordsSelected(id, true)}
+            >
+              x
+            </button>
+            {name}
           </td>
           <td>{relevance}</td>
           <td>

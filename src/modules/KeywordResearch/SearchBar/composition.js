@@ -17,11 +17,15 @@ export default compose(
       mask: value
     })
   }),
-  fromRenderProps(KeywordResearchConsumer, ({ onSearch }) => ({
-    onSearch
-  })),
+  fromRenderProps(
+    KeywordResearchConsumer,
+    ({ onSearch, updateKeywordsOmmited }) => ({
+      onSearch,
+      updateKeywordsOmmited
+    })
+  ),
   withHandlers({
-    onSubmit: ({ onSearch, mask }) => e => {
+    onSubmit: ({ onSearch, mask, updateKeywordsOmmited }) => e => {
       e.preventDefault()
 
       const values = Array.from(e.target.elements).reduce(
@@ -36,6 +40,7 @@ export default compose(
       )
 
       values.mask = mask.toLowerCase()
+      updateKeywordsOmmited()
       onSearch(values)
     }
   })
