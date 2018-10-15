@@ -16,7 +16,9 @@ const keyresults = Array.from({ length: 40 }, (value, index) => ({
 }))
 
 class App extends Component {
-  state = {}
+  state = {
+    results: keyresults
+  }
 
   onSearchKeyword = async () => {
     const results = await new Promise(resolve =>

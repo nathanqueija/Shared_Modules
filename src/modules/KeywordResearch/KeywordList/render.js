@@ -1,7 +1,13 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import ResultsTable from 'modules/KeywordResearch/ResultsTable'
 
-export default ({ className, keywordsSelected, updateKeywordsSelected }) => (
+export default ({
+  className,
+  keywordsSelected,
+  updateKeywordsSelected,
+  onChangeStatus,
+  keywordsApplied
+}) => (
   <div className={className}>
     <ResultsTable headings={['Keyword', 'Relevance', 'SV', 'Action']}>
       {keywordsSelected.map(({ id, relevance, name, sv }) => (
@@ -14,15 +20,24 @@ export default ({ className, keywordsSelected, updateKeywordsSelected }) => (
             >
               x
             </button>
-            {name}
+            {name.split(' ').map(piece => (
+              <Fragment key={piece}>
+                <span
+                  className={`${
+                    keywordsApplied.indexOf(piece) === -1 ? 'not-' : ''
+                  }included`}
+                >
+                  {piece}
+                </span>{' '}
+              </Fragment>
+            ))}
           </td>
           <td>{relevance}</td>
           <td>
             <progress value={sv} max="5" />
           </td>
           <td>
-            <button type="button">-</button>
-            <button type="button">+</button>
+            <input type="checkbox" onChange={onChangeStatus.bind(null, id)} />
           </td>
         </tr>
       ))}

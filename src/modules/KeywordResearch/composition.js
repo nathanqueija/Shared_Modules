@@ -2,6 +2,8 @@ import { compose, setStatic, withStateHandlers, withProps } from 'recompose'
 import KeywordSearch from 'modules/KeywordResearch/KeywordSearch'
 import KeywordList from 'modules/KeywordResearch/KeywordList'
 import ListingForm from 'modules/KeywordResearch/ListingForm'
+import intersectionBy from 'lodash/intersectionBy'
+import flatten from 'lodash/flatten'
 import isArray from 'lodash/isArray'
 import isUndefined from 'lodash/isUndefined'
 import unionBy from 'lodash/unionBy'
@@ -17,7 +19,8 @@ export default compose(
   withStateHandlers(
     {
       keywordsSelected: [],
-      keywordsOmmited: []
+      keywordsOmmited: [],
+      keywordsApplied: []
     },
     {
       updateKeywordsSelected: ({ keywordsSelected }, { results }) => (
@@ -39,6 +42,11 @@ export default compose(
         keywordsOmmited: isUndefined(id)
           ? []
           : unionBy(keywordsOmmited, [{ id }], 'id')
+      }),
+      updateKeywordsApplied: ({ keywordsApplied }) => (id, add) => ({
+        keywordsApplied: add
+          ? unionBy(keywordsApplied, [{ id }], 'id')
+          : differenceBy(keywordsApplied, [{ id }], 'id')
       })
     }
   ),
@@ -47,6 +55,13 @@ export default compose(
   })),
   withProps(({ results, keywordsOmmited }) => ({
     results: differenceBy(results, keywordsOmmited, 'id')
+  })),
+  withProps(({ keywordsApplied, keywordsSelected }) => ({
+    keywordsApplied: flatten(
+      intersectionBy(keywordsSelected, keywordsApplied, 'id').map(({ name }) =>
+        name.split(' ')
+      )
+    )
   })),
   withStyle,
   withStatics(statics)

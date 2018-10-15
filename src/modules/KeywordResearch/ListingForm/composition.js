@@ -1,4 +1,5 @@
-import { compose, withStateHandlers } from 'recompose'
+import { compose, withStateHandlers, fromRenderProps } from 'recompose'
+import { KeywordResearchConsumer } from 'modules/KeywordResearch/context'
 import withStatics from 'helpers/statics/set'
 import withStyle from './style'
 import * as statics from './statics'
@@ -8,14 +9,23 @@ const initialBulletpoints = Array.from({ length: 5 }, (value, index) => ({
 }))
 
 export default compose(
-  withStyle,
+  fromRenderProps(KeywordResearchConsumer, ({ keywordsApplied }) => ({
+    keywords: keywordsApplied.join(' ')
+  })),
   withStateHandlers(
-    { bulletpoints: initialBulletpoints },
+    {
+      finalKeywords: '',
+      bulletpoints: initialBulletpoints
+    },
     {
       addBulletpoint: ({ bulletpoints }) => () => ({
         bulletpoints: [...bulletpoints, { id: bulletpoints.length }]
+      }),
+      onChangeKeywords: () => e => ({
+        finalKeywords: e.target.value
       })
     }
   ),
+  withStyle,
   withStatics(statics)
 )

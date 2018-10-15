@@ -1,6 +1,12 @@
 import React from 'react'
 
-export default ({ className, bulletpoints, addBulletpoint }) => (
+export default ({
+  className,
+  bulletpoints,
+  addBulletpoint,
+  keywords,
+  onChangeKeywords
+}) => (
   <form className={className}>
     <label htmlFor="name">
       Name
@@ -22,7 +28,13 @@ export default ({ className, bulletpoints, addBulletpoint }) => (
     </button>
     <label htmlFor="backend_keywords">
       Backend Keywords
-      <textarea id="backend_keywords" rows="4" cols="50" />
+      <textarea
+        id="backend_keywords"
+        rows="4"
+        cols="50"
+        value={keywords}
+        onChange={onChangeKeywords}
+      />
     </label>
     <button type="submit">Export Listing</button>
   </form>

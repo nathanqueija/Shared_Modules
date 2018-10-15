@@ -10,6 +10,10 @@ export default component => styled(component)`
     grid-column: span 3;
   }
 
+  td {
+    padding: 5px 0;
+  }
+
   > button {
     justify-self: center;
     margin: 10px;
@@ -19,5 +23,21 @@ export default component => styled(component)`
     padding: 4px;
     cursor: pointer;
     outline: 0;
+  }
+
+  span {
+    font-size: 12px;
+    padding: 3px;
+    border: 1px solid black;
+    border-radius: 6px;
+    &.included {
+      background: lightgreen;
+      border-color: #60a389;
+    }
+
+    &.not-included {
+      background: #fbf2df;
+      border-color: #dbc497;
+    }
   }
 `

@@ -1,18 +1,30 @@
-import { compose, fromRenderProps } from 'recompose'
+import { compose, fromRenderProps, withHandlers } from 'recompose'
 import { KeywordResearchConsumer } from 'modules/KeywordResearch/context'
 import withStatics from 'helpers/statics/set'
 import withStyle from './style'
 import * as statics from './statics'
 
-// usar connect ants do db pra puxar info da store via props
 export default compose(
   fromRenderProps(
     KeywordResearchConsumer,
-    ({ keywordsSelected, updateKeywordsSelected }) => ({
+    ({
       keywordsSelected,
-      updateKeywordsSelected
+      updateKeywordsSelected,
+      updateKeywordsApplied,
+      keywordsApplied
+    }) => ({
+      keywordsSelected,
+      updateKeywordsSelected,
+      updateKeywordsApplied,
+      keywordsApplied
     })
   ),
+  withHandlers({
+    onChangeStatus: ({ updateKeywordsApplied }) => (
+      id,
+      { target: { checked } }
+    ) => updateKeywordsApplied(id, checked)
+  }),
   withStyle,
   withStatics(statics)
 )
