@@ -1,11 +1,7 @@
 import PropTypes from 'prop-types'
 
-export const displayName = 'Modules/KeywordResearch/Results'
+export const displayName = 'Modules/KeywordResearch/KeywordList'
 
 export const propTypes = {
-  items: PropTypes.array.isRequired
-}
-
-export const defaultProps = {
-  items: []
+  keywordsSelected: PropTypes.array.isRequired
 }

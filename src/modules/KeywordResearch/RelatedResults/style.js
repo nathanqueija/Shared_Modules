@@ -18,8 +18,10 @@ export default component => styled(component)`
   }
 
   img {
-    width: 80px;
-    height: 80px;
+    min-width: 80px;
+    min-height: 80px;
+    max-width: 80px;
+    max-height: 80px;
     margin-right: 5px;
     cursor: pointer;
   }

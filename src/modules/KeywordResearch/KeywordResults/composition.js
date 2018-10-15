@@ -15,7 +15,14 @@ const noResults = [
 const initialMessage = ['Type the keyword to start searching.']
 
 export default compose(
-  fromRenderProps(KeywordResearchConsumer, ({ results }) => ({ results })),
+  fromRenderProps(
+    KeywordResearchConsumer,
+    ({ results, updateKeywordsSelected, keywordsSelected }) => ({
+      results,
+      updateKeywordsSelected,
+      keywordsSelected
+    })
+  ),
   branch(
     ({ results }) => isUndefined(results),
     renderComponent(() => <ResultsMessage messages={initialMessage} />)

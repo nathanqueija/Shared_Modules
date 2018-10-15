@@ -1,28 +1,28 @@
 import React, { Component } from 'react'
-// import faker from 'faker'
+import faker from 'faker'
 import KeywordResearch from 'modules/KeywordResearch'
 
-// const keyresults = Array.from({ length: 5 }, (value, index) => ({
-//   id: index,
-//   name: faker.company.companyName(),
-//   relevance: faker.random.number({
-//     min: 1,
-//     max: 5
-//   }),
-//   sv: faker.random.number({
-//     min: 1,
-//     max: 5
-//   })
-// }))
+const keyresults = Array.from({ length: 40 }, (value, index) => ({
+  id: index,
+  name: faker.company.companyName(),
+  relevance: faker.random.number({
+    min: 1,
+    max: 5
+  }),
+  sv: faker.random.number({
+    min: 1,
+    max: 5
+  })
+}))
 
 class App extends Component {
   state = {}
 
   onSearchKeyword = async () => {
     const results = await new Promise(resolve =>
-      setTimeout(() => resolve([]), 2000)
+      setTimeout(() => resolve([]), 1)
     )
-    this.setState({ results })
+    this.setState({ results: keyresults || results })
   }
 
   render() {

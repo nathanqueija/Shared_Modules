@@ -9,7 +9,7 @@ export default component => styled(component)`
     min-width: 100%;
   }
 
-  tr:nth-child(odd) {
-    background-color: #dddddd;
+  tr:nth-child(even) {
+    background-color: #c4e0ed;
   }
 `
